@@ -1,0 +1,78 @@
+{
+  "base": "original LSTM notebook",
+  "data_source": "IMDb aclImdb train/pos and train/neg",
+  "source_reviews": 25000,
+  "split": {
+    "train": 20000,
+    "validation": 2500,
+    "test": 2500,
+    "ratio": [0.8, 0.1, 0.1],
+    "seed": 42,
+    "test_set_note": "custom split, not the official IMDb test set"
+  },
+  "random_control": {
+    "seed": 42,
+    "python_random": true,
+    "numpy": true,
+    "torch_cpu": true,
+    "torch_cuda": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "train_loader_generator_seed": 42,
+    "validation_shuffle": false,
+    "test_shuffle": false
+  },
+  "preprocessing": {
+    "html_cleaner": "BeautifulSoup html.parser",
+    "lowercase": true,
+    "regex_keep": "[a-z\\s]",
+    "tokenizer": "nltk.word_tokenize",
+    "stopwords": "nltk english stopwords",
+    "vocab_source": "train split only",
+    "max_vocab_size": 10000,
+    "special_tokens": ["<pad>", "<unk>"]
+  },
+  "embedding": {
+    "dimension": 300,
+    "glove_file": "glove.6B.300d.txt",
+    "glove_coverage": {
+      "found": 9851,
+      "vocab_size": 10000,
+      "ratio": 0.9851
+    },
+    "random_trainable": false,
+    "glove_trainable": false
+  },
+  "model": {
+    "lstm_layers": 1,
+    "bidirectional": false,
+    "hidden_dim": 512,
+    "dropout": 0.5,
+    "output_dim": 2,
+    "batch_first": true
+  },
+  "training": {
+    "epochs": 10,
+    "batch_size": 32,
+    "loss": "CrossEntropyLoss",
+    "optimizer": "Adam",
+    "learning_rate": 0.0008,
+    "padding_handling": "pack_padded_sequence",
+    "checkpoint_selection": "best validation accuracy; tie by lower validation loss",
+    "test_set_used_for_selection": false
+  },
+  "evaluation": {
+    "metrics": [
+      "loss",
+      "accuracy",
+      "precision",
+      "recall",
+      "f1",
+      "confusion_matrix",
+      "roc_auc",
+      "roc_curve"
+    ],
+    "positive_class": 1,
+    "prediction": "argmax of two-class logits"
+  }
+}

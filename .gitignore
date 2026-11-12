@@ -1,0 +1,35 @@
+# Python and notebook runtime
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.jupyter/
+*.log
+
+# Local data and downloaded embeddings
+data/
+aclImdb/
+glove*.zip
+glove.*.txt
+*.csv
+
+# Model binaries and local experiment runs
+runs/
+artifacts/*.pt
+artifacts/*.pth
+artifacts/*.ckpt
+*.pt
+*.pth
+*.ckpt
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Do not exclude lightweight metrics and plots in delivered artifacts.
+!artifacts/*.json
+!artifacts/*.png

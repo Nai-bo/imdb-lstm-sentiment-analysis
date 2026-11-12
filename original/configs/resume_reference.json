@@ -1,0 +1,12 @@
+{
+  "description": "Historical course-project metrics recorded in the resume. These are not the metrics from the current rerun.",
+  "random_embedding": {
+    "accuracy": 0.8076,
+    "roc_auc": 0.8630
+  },
+  "frozen_glove": {
+    "accuracy": 0.7352,
+    "roc_auc": 0.7730
+  },
+  "historical_accuracy_gap_random_minus_glove": 0.0724
+}
